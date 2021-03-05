@@ -1,0 +1,14 @@
+{
+  "name": "hey-world-api",
+  "version": "1.0.0",
+  "description": "Access your HEY World blog through a REST API using Netlify functions and your HEY World RSS feed",
+  "main": "main.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "he": "^1.2.0",
+    "jsdom": "^16.4.0",
+    "node-fetch": "^2.6.1"
+  },
+  "author": "Ed Johnson-Williams",
+  "license": "MIT"
+}
