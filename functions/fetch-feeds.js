@@ -1,13 +1,14 @@
 require('dotenv').config()
 const fetch = require('node-fetch')
-const JSDOM = require('jsdom')
+const jsdom = require("jsdom")
+const { JSDOM } = jsdom
 const he = require('he')
 
-const RSS_URL = process.env.RSS_URL;
+const RSS_URL = process.env.RSS_URL
 
-const handler = async (event) => {
+const handler = async () => {
   try {
-    const data = await getFeedData()
+    const data = await getFeedData(RSS_URL)
     return {
       statusCode: 200,
       headers: {
@@ -24,7 +25,7 @@ const handler = async (event) => {
   }
 }
 
-const getFeedData = async () => {
+const getFeedData = async (RSS_URL) => {
   const res = await fetch(RSS_URL)
   const feedData = await res.text()
 
