@@ -1,6 +1,6 @@
 # Hey World as an API
 
-Make a REST API out of the RSS feed for your Hey World site.
+Make a REST API out of the RSS feed for your [Hey World site](https://hey.com/world)
 
 Clone this repository and deploy it to Netlify
 
