@@ -21,14 +21,16 @@ Data from the API returns in this format
     originalBlogURL: "the url to the blog on Hey World",
     originalFeedURL: "the url to the blog's RSS feed",
     lastUpdated: "the date the blog was last updated",
-    posts: {
-        id: "a unique id for each blogpost",
-        title: "the blogpost title: either the email subject line or 'Untitled' if no subject line",
-        published: "the date the blogpost was first published",
-        lastUpdated: "the date the blogpost was last updated,
-        originalURL: "the url to original blogpost on Hey World",
-        content: "the blogpost content. Needs to be run through JSON.parse()"
-    }
+    posts: [
+        {
+            id: "a unique id for each blogpost",
+            title: "the blogpost title: either the email subject line or 'Untitled' if no subject line",
+            published: "the date the blogpost was first published",
+            lastUpdated: "the date the blogpost was last updated,
+            originalURL: "the url to original blogpost on Hey World",
+            content: "the blogpost content. Needs to be run through JSON.parse()"
+        }
+    ]
   }
 
 ```
