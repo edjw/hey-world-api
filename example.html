@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example of accessing Hey World API</title>
+    <style>
+        body {
+            max-width: 65ch;
+            margin: 0 auto;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        section,
+        article {
+            margin-top: 32px
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <p>Fetching the data from an example of the Hey World API on Netlify and then adding the data onto this page</p>
+    </header>
+
+    <main />
+
+    <script>
+        const getData = async () => {
+            const res = await fetch('https://hey-world-api.netlify.app/.netlify/functions/fetch-feeds')
+            return await res.json()
+        }
+
+        const main = async () => {
+            const { author, originalBlogURL, originalFeedURL, lastUpdated, posts } = await getData()
+
+            const html = `
+            <section>
+                <h1>Author / Site title: ${author}</h1>
+                <p><a href="${originalBlogURL}">Original blog URL</a></p>
+                <p><a href="${originalFeedURL}">Original feed URL</a></p>
+                <p>Last updated: ${new Date(lastUpdated).toDateString()}</p>
+            </section>
+
+            <section>
+            <h2>Posts</h2>
+
+            ${posts.map(({ id, title, published, lastUpdated, originalURL, content }) =>
+                `
+                <article>
+                    <h3>Title: ${title}</h3>
+                    <p>Unique post id: ${id}</p>
+                    <p>Published: ${new Date(published).toDateString()}</p>
+                    <p>Last updated: ${new Date(lastUpdated).toDateString()}</p>
+                    <p><a href='${originalURL}''>Original URL</a></p>
+                    <p><strong>Blogpost content</strong></p>
+                    <div>${JSON.parse(content)}</div>
+                </article>
+                `
+            ).join('')}
+            </section>
+            `
+
+            document.querySelector('main').innerHTML = html
+        }
+
+        main()
+
+    </script>
+</body>
+
+</html>
